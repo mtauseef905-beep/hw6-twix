@@ -1,14 +1,10 @@
 package binary;
 
-public class Minus implements Binop, Cloneable {
+public class Minus implements Binop {
+
     @Override
     public double eval(double left, double right) {
         return left - right;
-    }
-
-    @Override
-    public double eval(double[] values) {
-        throw new UnsupportedOperationException("Use eval(left, right) for Binop");
     }
 
     @Override
@@ -18,7 +14,13 @@ public class Minus implements Binop, Cloneable {
 
     @Override
     public Object clone() {
-        return new Minus();
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 }
+
+
 

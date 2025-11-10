@@ -1,15 +1,21 @@
 package binary;
 
-public class Variable implements Unop, Cloneable {
-    private int index; // X0, X1, etc.
+public class Variable implements Op {
+
+    private int index; // Example: X0 → index 0, X1 → index 1
 
     public Variable(int index) {
         this.index = index;
     }
 
+    public int getIndex() {
+        return index;
+    }
+
     @Override
-    public double eval(double[] values) {
-        return values[index];
+    public double eval(double left, double right) {
+        // In actual evaluation, this is handled in Node's eval using data[index]
+        return 0;
     }
 
     @Override
@@ -19,7 +25,10 @@ public class Variable implements Unop, Cloneable {
 
     @Override
     public Object clone() {
-        return new Variable(this.index);
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 }
-

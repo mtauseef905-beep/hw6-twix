@@ -1,15 +1,20 @@
 package binary;
 
-public class Const implements Unop, Cloneable {
+public class Const implements Op {
+
     private double value;
 
-    public Const(double v) {
-        this.value = v;
+    public Const(double value) {
+        this.value = value;
+    }
+
+    public double getValue() {
+        return value;
     }
 
     @Override
-    public double eval(double[] values) {
-        return value;
+    public double eval(double left, double right) {
+        return value; // Constants ignore inputs
     }
 
     @Override
@@ -19,6 +24,10 @@ public class Const implements Unop, Cloneable {
 
     @Override
     public Object clone() {
-        return new Const(this.value);
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 }

@@ -1,14 +1,11 @@
 package binary;
 
-public class Divide implements Binop, Cloneable {
-    @Override
-    public double eval(double left, double right) {
-        return left / right;
-    }
+public class Divide implements Binop {
 
     @Override
-    public double eval(double[] values) {
-        throw new UnsupportedOperationException("Use eval(left, right) for Binop");
+    public double eval(double left, double right) {
+        if (right == 0) return 0; // avoid division by zero
+        return left / right;
     }
 
     @Override
@@ -18,6 +15,11 @@ public class Divide implements Binop, Cloneable {
 
     @Override
     public Object clone() {
-        return new Divide();
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return null;
+        }
     }
 }
+
